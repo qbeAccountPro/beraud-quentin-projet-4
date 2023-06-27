@@ -1,7 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.parkit.parkingsystem.ParkingServiceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.734 s <<< FAILURE! - in com.parkit.parkingsystem.ParkingServiceTest
-processExitingVehicleTest  Time elapsed: 1.734 s  <<< ERROR!
-java.lang.NoSuchFieldError: EMPTY_BYTE_ARRAY
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.299 s - in com.parkit.parkingsystem.ParkingServiceTest
