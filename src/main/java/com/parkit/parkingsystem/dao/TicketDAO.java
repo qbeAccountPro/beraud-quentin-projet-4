@@ -48,7 +48,7 @@ public class TicketDAO {
             con = dataBaseConfig.getConnection();
             PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET);
             // ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-            ps.setString(2, vehicleRegNumber);
+            ps.setString(1, vehicleRegNumber);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 ticket = new Ticket();
@@ -90,29 +90,22 @@ public class TicketDAO {
     }
 
     /**
+     * This method will take the vehicle reg number and return the number of tickets
+     * present in the database.
+     * 
      * @param vehicleRegNumber
      * @return Sendback number of tickets for a vehicleRegNumber
      */
     public int getNbTicket(String vehicleRegNumber) {
         int nbTicket = 0;
         Connection con = null;
-        Ticket ticket = null;
         try {
             con = dataBaseConfig.getConnection();
-            PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET);
-            // ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-            ps.setString(2, vehicleRegNumber);
+            PreparedStatement ps = con.prepareStatement(DBConstants.GET_NB_TICKET);
+            ps.setString(1, vehicleRegNumber);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                ticket = new Ticket();
-                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)), false);
-                ticket.setParkingSpot(parkingSpot);
-                ticket.setId(rs.getInt(2));
-                ticket.setVehicleRegNumber(vehicleRegNumber);
-                ticket.setPrice(rs.getDouble(3));
-                ticket.setInTime(rs.getTimestamp(4));
-                ticket.setOutTime(rs.getTimestamp(5));
-                nbTicket++;
+                nbTicket = rs.getInt(1);
             }
             dataBaseConfig.closeResultSet(rs);
             dataBaseConfig.closePreparedStatement(ps);
@@ -123,6 +116,5 @@ public class TicketDAO {
             dataBaseConfig.closeConnection(con);
         }
         return nbTicket;
-
     }
 }
