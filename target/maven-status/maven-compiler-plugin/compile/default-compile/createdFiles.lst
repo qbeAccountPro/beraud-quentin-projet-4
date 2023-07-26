@@ -3,6 +3,7 @@ com\parkit\parkingsystem\service\ParkingService.class
 com\parkit\parkingsystem\model\ParkingSpot.class
 com\parkit\parkingsystem\App.class
 com\parkit\parkingsystem\dao\ParkingSpotDAO.class
+com\parkit\parkingsystem\service\FareUtil.class
 com\parkit\parkingsystem\constants\Fare.class
 com\parkit\parkingsystem\service\FareCalculatorService.class
 com\parkit\parkingsystem\model\Ticket.class

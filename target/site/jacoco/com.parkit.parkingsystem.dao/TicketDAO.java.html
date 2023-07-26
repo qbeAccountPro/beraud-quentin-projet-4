@@ -90,29 +90,32 @@ import java.sql.Timestamp;
     }
 
     /**
+     * This method will take the vehicle reg number and return the number of tickets
+     * present in the database.
+     * 
      * @param vehicleRegNumber
      * @return Sendback number of tickets for a vehicleRegNumber
      */
     public int getNbTicket(String vehicleRegNumber) {
-<span class="nc" id="L97">        int nbTicket = 0;</span>
-<span class="nc" id="L98">        Connection con = null;</span>
+<span class="nc" id="L100">        int nbTicket = 0;</span>
+<span class="nc" id="L101">        Connection con = null;</span>
         try {
-<span class="nc" id="L100">            con = dataBaseConfig.getConnection();</span>
-<span class="nc" id="L101">            PreparedStatement ps = con.prepareStatement(DBConstants.GET_NB_TICKET);</span>
-<span class="nc" id="L102">            ps.setString(1, vehicleRegNumber);</span>
-<span class="nc" id="L103">            ResultSet rs = ps.executeQuery();</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L105">                nbTicket = rs.getInt(1);</span>
+<span class="nc" id="L103">            con = dataBaseConfig.getConnection();</span>
+<span class="nc" id="L104">            PreparedStatement ps = con.prepareStatement(DBConstants.GET_NB_TICKET);</span>
+<span class="nc" id="L105">            ps.setString(1, vehicleRegNumber);</span>
+<span class="nc" id="L106">            ResultSet rs = ps.executeQuery();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L108">                nbTicket = rs.getInt(1);</span>
             }
-<span class="nc" id="L107">            dataBaseConfig.closeResultSet(rs);</span>
-<span class="nc" id="L108">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="nc" id="L109">        } catch (Exception ex) {</span>
-<span class="nc" id="L110">            logger.error(&quot;Error fetching next available slot&quot;, ex);</span>
-<span class="nc" id="L111">            return nbTicket;</span>
+<span class="nc" id="L110">            dataBaseConfig.closeResultSet(rs);</span>
+<span class="nc" id="L111">            dataBaseConfig.closePreparedStatement(ps);</span>
+<span class="nc" id="L112">        } catch (Exception ex) {</span>
+<span class="nc" id="L113">            logger.error(&quot;Error fetching next available slot&quot;, ex);</span>
+<span class="nc" id="L114">            return nbTicket;</span>
         } finally {
-<span class="nc" id="L113">            dataBaseConfig.closeConnection(con);</span>
+<span class="nc" id="L116">            dataBaseConfig.closeConnection(con);</span>
         }
-<span class="nc" id="L115">        return nbTicket;</span>
+<span class="nc" id="L118">        return nbTicket;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

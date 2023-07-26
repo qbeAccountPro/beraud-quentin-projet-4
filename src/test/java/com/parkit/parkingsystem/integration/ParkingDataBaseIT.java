@@ -94,7 +94,8 @@ public class ParkingDataBaseIT {
     parkingServiceMock.processExitingVehicle(); // Exit the car park
     ticket = ticketDAO.getTicket(REGNUMBER);
     assertNotNull(ticket.getPrice());
-    double delatDate = ticket.getOutTime().compareTo(ticket.getInTime()); // Get the delata betwen the in/out times.
+    // Get the delata betwen the in/out times.
+    double delatDate = ticket.getOutTime().compareTo(ticket.getInTime()); 
     assertTrue(delatDate > 0);
   }
 
@@ -109,11 +110,13 @@ public class ParkingDataBaseIT {
     testParkingLotExit(); // 2nd entry into the car park
     switch (ticket.getParkingSpot().getParkingType()) {
       case CAR: {
-        assertEquals(ticket.getPrice(), FareUtil.roundedFareToCents(0.95 * Fare.CAR_RATE_PER_HOUR));
+        assertEquals(ticket.getPrice(), FareUtil.
+        roundedFareToCents(0.95 * Fare.CAR_RATE_PER_HOUR));
         break;
       }
       case BIKE: {
-        assertEquals(ticket.getPrice(), FareUtil.roundedFareToCents(0.95 * Fare.BIKE_RATE_PER_HOUR));
+        assertEquals(ticket.getPrice(), FareUtil.
+        roundedFareToCents(0.95 * Fare.BIKE_RATE_PER_HOUR));
         break;
       }
       default:

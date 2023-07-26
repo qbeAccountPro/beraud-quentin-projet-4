@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FareUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">parking-system</a> &gt; <a href="index.source.html" class="el_package">com.parkit.parkingsystem.service</a> &gt; <span class="el_source">FareUtil.java</span></div><h1>FareUtil.java</h1><pre class="source lang-java linenums">package com.parkit.parkingsystem.service;
+
+<span class="nc" id="L3">public class FareUtil {</span>
+    
+  /**
+   * Some javadoc.
+   * Take a Fare on Param with high precision after the decimal point and return
+   * the rounded fare to cent to the upper digit. 
+   * 
+   * @param Fare : Fare with too high precision.
+   * @return the fare with a precision to cent.
+   * 
+   */
+    public static double roundedFareToCents(double fare) {
+<span class="fc" id="L15">        int decimalPlaces = 2;</span>
+<span class="fc" id="L16">        double factor = Math.pow(10, decimalPlaces);</span>
+<span class="fc" id="L17">        double roundedFare = Math.ceil(fare * factor) / factor;</span>
+<span class="fc" id="L18">        return roundedFare;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -32,26 +32,30 @@ public class FareCalculatorService {
     if ((ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime()))) {
       throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
     }
+    
     Date inDate = ticket.getInTime();
     Date outHour = ticket.getOutTime();
-    double minutes_30 = 0.5;
     double deltaMilliSecond = outHour.getTime() - inDate.getTime();
     double duration = deltaMilliSecond / (1000 * 60 * 60);
+    double HALFHOUR = 0.5;
+
     switch (ticket.getParkingSpot().getParkingType()) {
       case CAR: {
-        if (duration < minutes_30) {
+        if (duration < HALFHOUR) {
           ticket.setPrice(0);
           break;
         } else if (discount) {
-          ticket.setPrice(FareUtil.roundedFareToCents(duration * Fare.CAR_RATE_PER_HOUR * 0.95));
+          ticket.setPrice(FareUtil.
+          roundedFareToCents(duration * Fare.CAR_RATE_PER_HOUR * 0.95));
           break;
         } else {
-          ticket.setPrice(FareUtil.roundedFareToCents(duration * Fare.CAR_RATE_PER_HOUR));
+          ticket.setPrice(FareUtil.
+          roundedFareToCents(duration * Fare.CAR_RATE_PER_HOUR));
           break;
         }
       }
       case BIKE: {
-        if (duration < minutes_30) {
+        if (duration < HALFHOUR) {
           ticket.setPrice(0);
           break;
         } else if (discount) {
